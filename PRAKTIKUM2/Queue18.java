@@ -1,7 +1,6 @@
-package PRAKTIKUM1;
+package PRAKTIKUM2;
 public class Queue18 {
-
-    int[] data;
+    Nasabah18 [] data;
     int front;
     int rear;
     int size;
@@ -9,7 +8,7 @@ public class Queue18 {
 
     public Queue18(int n) {
         max = n;
-        data = new int [max];
+        data = new Nasabah18 [max];
         size = 0;
         front = rear = -1;
     }
@@ -21,7 +20,6 @@ public class Queue18 {
             return false;
         }
     }
-
     public boolean IsFull () {
         if (size == max) {
             return true;
@@ -29,29 +27,6 @@ public class Queue18 {
             return false;
         }
     }
-
-    public void peek() {
-        if (!ISEmpty()) {
-            System.out.println("Elemen terdepan: " + data[front]);
-        } else {
-            System.out.println("Queue masih kosong");
-        }
-    }
-
-    public void print(){
-        if (ISEmpty()) {
-            System.out.println("queue masih kosong");
-        } else {
-            int i = front;
-            while (i != rear ) {
-                System.out.print(data[i] + " ");
-                i = (i +1) % max;
-            }
-            System.out.println(data[i] + " ");
-            System.out.println("Jumlah elemen = " + size);
-        }
-    }
-
     public void clear() {
         if (!ISEmpty()) {
             front = rear = -1;
@@ -61,11 +36,9 @@ public class Queue18 {
             System.out.println("Queue masih kosong");
         }
     }
-
-    public void Enqueue (int dt) {
+    public void Enqueue (Nasabah18 dt) {
         if (IsFull()) {
             System.out.println("Queue sudah penuh");
-            System.exit(0);
         } else {
             if (ISEmpty()) {
                 front = rear = 0;
@@ -81,11 +54,10 @@ public class Queue18 {
         }
     }
 
-    public int Deaqueue() {
-        int dt = 0;
+    public Nasabah18 Dequeue() {
+        Nasabah18 dt = new Nasabah18();
         if (ISEmpty()) {
             System.out.println("Queueue masih kosong");
-            System.exit(0);
         } else {
             dt = data[front];
             size--;
@@ -101,4 +73,40 @@ public class Queue18 {
         }
         return dt;
     }
+
+    public void peek() {
+        if (!ISEmpty()) {
+            System.out.println("Elemen terdepan: " + data[front].norek + " " +data[front].nama + " " + data[front].alamat + " " + data[front].umur + " " +data[front].saldo);    
+           } else {
+            System.out.println("Queue masih kosong");
+        }
+    }
+
+    public void print(){
+        if (ISEmpty()) {
+            System.out.println("queue masih kosong");
+        } else {
+            int i = front;
+            while (i != rear ) {
+                System.out.print(data[i].norek + " " +data[i].nama + " " + data[i].alamat + " " + data[i].umur + " " +data[i].saldo);
+                i = (i +1) % max;
+            }
+            System.out.println(data[i].norek + " " +data[i].nama + " " + data[i].alamat + " " + data[i].umur + " " +data[i].saldo);
+            System.out.println("Jumlah elemen = " + size);
+        }
+    }
+
+    public Nasabah18 peekRear() {
+        Nasabah18 dt = new Nasabah18();
+        if (!ISEmpty()) {
+            dt = data[rear];
+            return dt;
+        } else {
+            System.out.println("Queue masih kosong");
+            return null;
+        }
+    }
+    
+
+
 }
